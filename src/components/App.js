@@ -1,41 +1,44 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 
-import NumberButtons from "./numberButtons";
-import OperatorButtons from "./operatorButtons";
-import Ac from "./Ac";
-import CalcDisplay from "./calcDisplay";
+import NumberButtons from './numberButtons';
+import OperatorButtons from './operatorButtons';
+import Ac from './Ac';
+import CalcDisplay from './calcDisplay';
+import Equals from './Equals';
 
-import "../css/calculator.css";
+import '../css/calculator.css';
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      leftNumber: "",
-      operator: "",
-      rightNumber: ""
+      leftNumber: '',
+      operator: '',
+      rightNumber: ''
     };
     this.addNumber = this.addNumber.bind(this);
     this.addOperator = this.addOperator.bind(this);
     this.clearMethod = this.clearMethod.bind(this);
+    this.selectorMethod = this.selectorMethod.bind(this);
 
   }
-  render() {
+  render () {
     return (
       <div className="component-Calculator">
 
         <div className="component-keypad">
           <h2>CALCULATOR</h2>
           <CalcDisplay leftNumber={this.state.leftNumber} />
-          <Ac clearMethod={this.clearMethod}/>
+          <Ac clearMethod={this.clearMethod} />
           <NumberButtons addNumber={this.addNumber} />
+          <Equals selectorMethod={this.selectorMethod} />
           <OperatorButtons addOperator={this.addOperator} />
 
         </div>
       </div>
     );
   }
-  addNumber(e) {
+  addNumber (e) {
     const value = e.target.innerHTML;
     if (!this.state.operator) {
       return this.setState({
@@ -44,37 +47,53 @@ class App extends Component {
     } else {
       return this.setState({
         rightNumber: this.state.rightNumber + value
-      })
+      });
     }
   }
-  addOperator(e) {
+  addOperator (e) {
     const value = e.target.innerHTML;
     this.setState({
       operator: value
     });
   }
-  addMethod(a, b) {
-    return a + b;
-  }
-  subtractMethod(a, b) {
-    return a - b
-  }
 
-  divideMethod(a, b) {
-    return a / b
+  selectorMethod () {
+
+    const operator = this.state.operator;
+    if (operator === '+') this.addMethod(Number(this.state.leftNumber), Number(this.state.rightNumber));
+
   }
 
-  multiplyMethod(a, b) {
-    return a * b
+  addMethod (a, b) {
+    console.log(a, b);
+    let result = a + b;
+
+    this.setState({
+      leftNumber: result,
+      rightNumber: ''
+
+    });
+
+  }
+  subtractMethod (a, b) {
+    return a - b;
+  }
+
+  divideMethod (a, b) {
+    return a / b;
+  }
+
+  multiplyMethod (a, b) {
+    return a * b;
   }
 
 
-  clearMethod() {
+  clearMethod () {
     return this.setState({
-      leftNumber: "",
-      rightNumber: "",
-      operator: ""
-    })
+      leftNumber: '',
+      rightNumber: '',
+      operator: ''
+    });
   }
 
 }

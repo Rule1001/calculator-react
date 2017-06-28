@@ -3,7 +3,7 @@ import Button from './Button';
 
 import '../css/operatorButtons.css'
 
-const buttonValues = ['+', '-', '*', '=', '/'];
+const buttonValues = ['+', '-', '*', '/'];
 
 class OperatorButtons extends React.Component {
     render () {
@@ -15,13 +15,15 @@ class OperatorButtons extends React.Component {
                         key={value} 
                         colorClass={'operator'} 
                         value={value} 
-                        handleClick={this.props.addOperator}
+                        handleClick={this.props.addOperator} 
+
                         />
                     )
                 })}
             </div>
         )
     }
+
 }
 
 export default OperatorButtons;
