@@ -10,7 +10,7 @@ class ACAndEquals extends React.Component {
             <div className="component-ACAndEquals">
                 {ac.map((value) => {
                     return (
-                        <Button colorClass={'acAndEquals'} value={value} />
+                        <Button key={value} colorClass={'acAndEquals'} value={value} />
                     )
                 })}
             </div>
