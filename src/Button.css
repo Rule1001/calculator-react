@@ -1,0 +1,19 @@
+.component-Button {
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+}
+
+.component-Button.operator {
+    background-color: orange;
+}
+
+.component-Button.number {
+    background-color: greenyellow;
+}
+
+.component-Button.acAndEquals {
+    width: 400px;
+    height: 50px;
+    background-color: fuchsia;
+}

@@ -1,0 +1,8 @@
+.component-NumberButtons {
+    box-sizing: border-box;
+    width: 300px;
+}
+
+.component-NumberButtons button {
+    float: left;
+}
