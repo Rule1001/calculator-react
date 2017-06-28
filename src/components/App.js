@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import NumberButtons from "./numberButtons";
 import OperatorButtons from "./operatorButtons";
-import ACAndEquals from "./ACAndEquals";
+import Ac from "./Ac";
 import CalcDisplay from "./calcDisplay";
 
 import "../css/calculator.css";
@@ -17,6 +17,8 @@ class App extends Component {
     };
     this.addNumber = this.addNumber.bind(this);
     this.addOperator = this.addOperator.bind(this);
+    this.clearMethod = this.clearMethod.bind(this);
+
   }
   render() {
     return (
@@ -25,7 +27,7 @@ class App extends Component {
         <div className="component-keypad">
           <h2>CALCULATOR</h2>
           <CalcDisplay leftNumber={this.state.leftNumber} />
-          <ACAndEquals />
+          <Ac clearMethod={this.clearMethod}/>
           <NumberButtons addNumber={this.addNumber} />
           <OperatorButtons addOperator={this.addOperator} />
 
@@ -35,9 +37,15 @@ class App extends Component {
   }
   addNumber(e) {
     const value = e.target.innerHTML;
-    this.setState({
-      leftNumber: this.state.leftNumber + value
-    });
+    if (!this.state.operator) {
+      return this.setState({
+        leftNumber: this.state.leftNumber + value
+      });
+    } else {
+      return this.setState({
+        rightNumber: this.state.rightNumber + value
+      })
+    }
   }
   addOperator(e) {
     const value = e.target.innerHTML;
@@ -45,6 +53,30 @@ class App extends Component {
       operator: value
     });
   }
+  addMethod(a, b) {
+    return a + b;
+  }
+  subtractMethod(a, b) {
+    return a - b
+  }
+
+  divideMethod(a, b) {
+    return a / b
+  }
+
+  multiplyMethod(a, b) {
+    return a * b
+  }
+
+
+  clearMethod() {
+    return this.setState({
+      leftNumber: "",
+      rightNumber: "",
+      operator: ""
+    })
+  }
+
 }
 
 export default App;
